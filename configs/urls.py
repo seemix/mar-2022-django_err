@@ -15,12 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from users.views import TestView,UserListCreateView,UserRetrieveUpdateDestroy
+
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('test', TestView.as_view()),
-    path('users', UserListCreateView.as_view()),
-    # path('users/<int:pk>/<str:name>', UserRetrieveUpdateDestroy.as_view())
-    path('users/<int:pk>', UserRetrieveUpdateDestroy.as_view())
 ]
-# ' http://127.0.0.1:8000/test'
