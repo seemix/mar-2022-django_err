@@ -6,6 +6,7 @@ from django.db import models
 from apps.autoparks.models import AutoParkModel
 
 from .managers import CarManager
+from .services import upload_to
 
 # """Створити модель Car з такими полями:
 # - марка машини
@@ -23,6 +24,7 @@ class CarModel(models.Model):
     year = models.IntegerField(validators=(v.MinValueValidator(1990), v.MaxValueValidator(date.today().year)))
     engine = models.FloatField()
     price = models.IntegerField()
+    photo = models.ImageField(upload_to=upload_to, blank=True)
     auto_park = models.ForeignKey(AutoParkModel, on_delete=models.CASCADE, related_name='cars')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

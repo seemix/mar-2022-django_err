@@ -1,7 +1,7 @@
-from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, UpdateAPIView
 
 from apps.cars.models import CarModel
-from apps.cars.serializers import CarAllSerializer, CarSerializer
+from apps.cars.serializers import AttachPhotoSerializer, CarAllSerializer, CarSerializer
 
 
 class CarListCreateView(ListAPIView):
@@ -22,6 +22,11 @@ class CarListCreateView(ListAPIView):
     #     return super().create(*args, **kwargs)
 
 
+class AttachPhotoCarView(UpdateAPIView):
+    queryset = CarModel.objects.all()
+    serializer_class = AttachPhotoSerializer
+    http_method_names = ('patch',)
+
+
 class CarRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     queryset = CarModel.objects.all()
-    serializer_class = CarSerializer
