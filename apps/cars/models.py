@@ -1,8 +1,11 @@
-from django.db import models
-from django.core import validators as v
 from datetime import date
+
+from django.core import validators as v
+from django.db import models
+
 from apps.autoparks.models import AutoParkModel
 
+from .managers import CarManager
 
 # """Створити модель Car з такими полями:
 # - марка машини
@@ -23,3 +26,5 @@ class CarModel(models.Model):
     auto_park = models.ForeignKey(AutoParkModel, on_delete=models.CASCADE, related_name='cars')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects = CarManager()
